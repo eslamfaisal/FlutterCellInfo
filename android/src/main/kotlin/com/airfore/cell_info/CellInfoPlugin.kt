@@ -17,19 +17,19 @@ class CellInfoPlugin: FlutterPlugin, MethodCallHandler {
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
   private  var context : Context? = null
+
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     context =  flutterPluginBinding.applicationContext
+
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "cell_info")
     channel.setMethodCallHandler(this)
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
-
       val net = NetMonster()
-      net.requestData(context!!)
+      net.requestData(context!!,result)
 
-      result.success("Android ${android.os.Build.VERSION.RELEASE}")
     } else {
       result.notImplemented()
     }
@@ -38,6 +38,4 @@ class CellInfoPlugin: FlutterPlugin, MethodCallHandler {
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
   }
-
-
 }

@@ -12,7 +12,7 @@ data class DisplayInfo(
      * Override network type giving more granular information about current connection.
      * Works just for LTE and NR networks.
      */
-    val overrideNetworkType: NetworkOverrideType = NetworkOverrideType.NONE,
+    val overrideNetworkType: NetworkOverrideType = NetworkOverrideType.NONE
 ) {
     
     enum class NetworkOverrideType {
