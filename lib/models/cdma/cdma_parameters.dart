@@ -1,4 +1,6 @@
-class WCDMAParameters {
+import 'package:cell_info/models/common/cell_info.dart';
+
+class CDMAParameters extends BasicCellInfo {
   int nid;
   int bid;
   double lat;
@@ -9,7 +11,7 @@ class WCDMAParameters {
   int evdoRssi;
   int evdoSnr;
 
-  WCDMAParameters({
+  CDMAParameters({
     this.nid,
     this.bid,
     this.lat,
@@ -21,7 +23,7 @@ class WCDMAParameters {
     this.evdoSnr,
   });
 
-  WCDMAParameters.fromJson(Map<String, dynamic> map) {
+  CDMAParameters.fromJson(Map<String, dynamic> map) {
     this.nid = map['nid'];
     this.bid = map['bid'];
     this.lat = map['lat'];
