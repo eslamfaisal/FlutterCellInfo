@@ -62,7 +62,7 @@ data class CellGsm(
     /**
      * 15-decimal digit code that contains MCC-MNC-LAC-CID
      */
-    val cgi: String?
+        val cgi: String?
         get() = if (network != null) {
             "${network.toPlmn()}${lac.toString().padStart(5, '0')}${cid.toString().padStart(5, '0')}"
         } else null

@@ -26,7 +26,7 @@ class CellInfoPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "getPlatformVersion") {
+    if (call.method == "cell_info") {
       val net = NetMonster()
       net.requestData(context!!,result)
 

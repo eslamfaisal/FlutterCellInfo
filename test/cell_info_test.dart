@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await CellInfo.platformVersion, '42');
+    expect(await CellInfo.getCellInfo, '42');
   });
 }

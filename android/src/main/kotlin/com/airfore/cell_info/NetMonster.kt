@@ -3,10 +3,17 @@ package com.airfore.cell_info
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
+import com.airfore.cell_info.models.cdma.getCdma
+import com.airfore.cell_info.models.common.Network
+import com.airfore.cell_info.models.gsm.getGsm
+import com.airfore.cell_info.models.lte.getLte
+import com.airfore.cell_info.models.nr.BandNR
+import com.airfore.cell_info.models.nr.CellNR
+import com.airfore.cell_info.models.nr.SignalNR
+import com.airfore.cell_info.models.nr.getNr
+import com.google.gson.Gson
 import cz.mroczis.netmonster.core.factory.NetMonsterFactory
 import cz.mroczis.netmonster.core.model.cell.*
-import java.util.*
-import io.flutter.plugin.common.MethodChannel.Result
 
 class NetMonster {
 
@@ -48,7 +55,7 @@ class NetMonster {
     }
 
     @SuppressLint("MissingPermission")
-    fun requestData(context: Context,  result: io.flutter.plugin.common.MethodChannel.Result) {
+    fun requestData(context: Context, result: io.flutter.plugin.common.MethodChannel.Result) {
         NetMonsterFactory.get(context).apply {
             val merged = getCells()
             merged.forEach {
@@ -60,13 +67,31 @@ class NetMonster {
 //        if(list[0] is CellLte)
         Log.d(TAG, "requestData list siz: ${list.size}")
 
-        when {
-            list[0] is CellLte -> result.success("Your dbm is : ${(list[0] as CellLte).signal.dbm}")
-            list[0] is CellCdma -> result.success("Your dbm is : ${(list[0] as CellCdma).signal.dbm}")
-            list[0] is CellGsm -> result.success("Your dbm is : ${(list[0] as CellGsm).signal.dbm}")
-            list[0] is CellNr -> result.success("Your dbm is : ${(list[0] as CellNr).signal.dbm}")
-            list[0] is CellTdscdma -> result.success("Your dbm is : ${(list[0] as CellTdscdma).signal.dbm}")
-            list[0] is CellWcdma -> result.success("Your dbm is : ${(list[0] as CellWcdma).signal.dbm}")
+        val cells: MutableList<Any> = ArrayList()
+        list.forEach { cell ->
+
+            when (cell) {
+                is CellLte -> {
+                    cells.add(getLte(cell))
+                }
+                is CellNr -> {
+                    cells.add(getNr(cell))
+                }
+                is CellCdma -> {
+                    cells.add(getCdma(cell))
+                }
+                is CellGsm -> {
+                    cells.add(getGsm(cell))
+                }
+
+//                is CellTdscdma -> result.success("Your dbm is : ${(list[0] as CellTdscdma).signal.dbm}")
+//                is CellWcdma -> result.success("Your dbm is : ${(list[0] as CellWcdma).signal.dbm}")
+            }
+
+
         }
+
+        result.success("Your dbm is : ${Gson().toJson(cells)}")
+
     }
 }
