@@ -17,37 +17,34 @@ class NetMonster {
 
     private val TAG = "NetMonster"
 
-    val list: MutableList<Any> = ArrayList()
+    val cells: MutableList<Any> = ArrayList()
+
+
     private val transformer = object : ICellProcessor<Unit> {
 
         override fun processLte(cell: CellLte) {
-            list.add(cell)
-            Log.d(TAG, "processLte: ")
+            cells.add(getLte(cell))
         }
 
         override fun processCdma(cell: CellCdma) {
-
-            list.add(cell)
+            cells.add(getCdma(cell))
         }
 
         override fun processGsm(cell: CellGsm) {
-            list.add(cell)
+            cells.add(getGsm(cell))
 
         }
 
         override fun processNr(cell: CellNr) {
-            list.add(cell)
-
+            cells.add(getNr(cell))
         }
 
         override fun processTdscdma(cell: CellTdscdma) {
-
-            list.add(cell)
+            cells.add(getTdscdma(cell))
         }
 
         override fun processWcdma(cell: CellWcdma) {
-            list.add(cell)
-
+            cells.add(getWcdma(cell))
         }
 
     }
@@ -60,49 +57,6 @@ class NetMonster {
                 it.let(processor = transformer)
             }
             Log.d("NTM-RES", " \n${merged.joinToString(separator = "\n")}")
-        }
-
-//        if(list[0] is CellLte)
-        Log.d(TAG, "requestData list siz: ${list.size}")
-
-        val cells: MutableList<Any> = ArrayList()
-        list.forEach { cell ->
-
-            when (cell) {
-
-                is CellNr -> {
-                    Log.d(TAG, "requestData: NR")
-
-                    cells.add(getNr(cell))
-                }
-                is CellLte -> {
-                    Log.d(TAG, "requestData: LTE")
-                    cells.add(getLte(cell))
-
-                }
-                is CellWcdma -> {
-                    Log.d(TAG, "requestData: WCDMA")
-                    cells.add(getWcdma(cell))
-                }
-                is CellCdma -> {
-                    Log.d(TAG, "requestData: CDMA")
-
-                    cells.add(getCdma(cell))
-                }
-                is CellGsm -> {
-                    Log.d(TAG, "requestData: GSM")
-
-                    cells.add(getGsm(cell))
-                }
-                is CellTdscdma -> {
-                    Log.d(TAG, "requestData: TDSCDMA")
-
-                    cells.add(getTdscdma(cell))
-                }
-
-            }
-
-
         }
 
         result.success("Your dbm is : ${Gson().toJson(cells)}")
