@@ -4,14 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import com.airfore.cell_info.models.cdma.getCdma
-import com.airfore.cell_info.models.common.Network
 import com.airfore.cell_info.models.gsm.getGsm
 import com.airfore.cell_info.models.lte.getLte
-import com.airfore.cell_info.models.nr.BandNR
-import com.airfore.cell_info.models.nr.CellNR
-import com.airfore.cell_info.models.nr.SignalNR
 import com.airfore.cell_info.models.nr.getNr
 import com.airfore.cell_info.models.tdscdma.getTdscdma
+import com.airfore.cell_info.models.wcdma.getWcdma
 import com.google.gson.Gson
 import cz.mroczis.netmonster.core.factory.NetMonsterFactory
 import cz.mroczis.netmonster.core.model.cell.*
@@ -73,22 +70,35 @@ class NetMonster {
 
             when (cell) {
                 is CellLte -> {
+                    Log.d(TAG, "requestData: LTE")
                     cells.add(getLte(cell))
                 }
                 is CellNr -> {
+                    Log.d(TAG, "requestData: NR")
+
                     cells.add(getNr(cell))
                 }
                 is CellCdma -> {
+                    Log.d(TAG, "requestData: CDMA")
+
                     cells.add(getCdma(cell))
                 }
                 is CellGsm -> {
+                    Log.d(TAG, "requestData: GSM")
+
                     cells.add(getGsm(cell))
                 }
                 is CellTdscdma -> {
+                    Log.d(TAG, "requestData: TDSCDMA")
+
                     cells.add(getTdscdma(cell))
                 }
+                is CellWcdma -> {
+                    Log.d(TAG, "requestData: WCDMA")
 
-//                is CellWcdma -> result.success("Your dbm is : ${(list[0] as CellWcdma).signal.dbm}")
+                    cells.add(getWcdma(cell))
+                }
+
             }
 
 
