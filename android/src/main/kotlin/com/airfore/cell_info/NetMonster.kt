@@ -11,6 +11,7 @@ import com.airfore.cell_info.models.nr.BandNR
 import com.airfore.cell_info.models.nr.CellNR
 import com.airfore.cell_info.models.nr.SignalNR
 import com.airfore.cell_info.models.nr.getNr
+import com.airfore.cell_info.models.tdscdma.getTdscdma
 import com.google.gson.Gson
 import cz.mroczis.netmonster.core.factory.NetMonsterFactory
 import cz.mroczis.netmonster.core.model.cell.*
@@ -83,8 +84,10 @@ class NetMonster {
                 is CellGsm -> {
                     cells.add(getGsm(cell))
                 }
+                is CellTdscdma -> {
+                    cells.add(getTdscdma(cell))
+                }
 
-//                is CellTdscdma -> result.success("Your dbm is : ${(list[0] as CellTdscdma).signal.dbm}")
 //                is CellWcdma -> result.success("Your dbm is : ${(list[0] as CellWcdma).signal.dbm}")
             }
 
