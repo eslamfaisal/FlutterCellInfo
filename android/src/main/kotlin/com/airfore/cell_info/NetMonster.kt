@@ -69,14 +69,20 @@ class NetMonster {
         list.forEach { cell ->
 
             when (cell) {
-                is CellLte -> {
-                    Log.d(TAG, "requestData: LTE")
-                    cells.add(getLte(cell))
-                }
+
                 is CellNr -> {
                     Log.d(TAG, "requestData: NR")
 
                     cells.add(getNr(cell))
+                }
+                is CellLte -> {
+                    Log.d(TAG, "requestData: LTE")
+                    cells.add(getLte(cell))
+
+                }
+                is CellWcdma -> {
+                    Log.d(TAG, "requestData: WCDMA")
+                    cells.add(getWcdma(cell))
                 }
                 is CellCdma -> {
                     Log.d(TAG, "requestData: CDMA")
@@ -92,11 +98,6 @@ class NetMonster {
                     Log.d(TAG, "requestData: TDSCDMA")
 
                     cells.add(getTdscdma(cell))
-                }
-                is CellWcdma -> {
-                    Log.d(TAG, "requestData: WCDMA")
-
-                    cells.add(getWcdma(cell))
                 }
 
             }
