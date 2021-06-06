@@ -6,7 +6,7 @@ import cz.mroczis.netmonster.core.model.cell.CellWcdma
 fun getWcdma(cell: CellWcdma): CellWCDMA {
 
     val cellGSM = CellWCDMA()
-    cellGSM.type = "TDSCDMA"
+    cellGSM.type = "WCDMA"
 
     cellGSM.bandWCDMA = BandWCDMA()
     cellGSM.connectionStatus = cell.connectionStatus.toString()
