@@ -17,47 +17,130 @@ class NetMonster {
 
     private val TAG = "NetMonster"
 
-    val cells: MutableList<Any> = ArrayList()
-
-
+    val list: MutableList<Any> = ArrayList()
     private val transformer = object : ICellProcessor<Unit> {
 
         override fun processLte(cell: CellLte) {
-            cells.add(getLte(cell))
+            list.add(cell)
+            Log.d(TAG, "processLte: ")
         }
 
         override fun processCdma(cell: CellCdma) {
-            cells.add(getCdma(cell))
+
+            list.add(cell)
         }
 
         override fun processGsm(cell: CellGsm) {
-            cells.add(getGsm(cell))
+            list.add(cell)
 
         }
 
         override fun processNr(cell: CellNr) {
-            cells.add(getNr(cell))
+            list.add(cell)
+
         }
 
         override fun processTdscdma(cell: CellTdscdma) {
-            cells.add(getTdscdma(cell))
+
+            list.add(cell)
         }
 
         override fun processWcdma(cell: CellWcdma) {
-            cells.add(getWcdma(cell))
+            list.add(cell)
+
         }
 
     }
+    val cells: MutableList<Any> = ArrayList()
 
     @SuppressLint("MissingPermission")
     fun requestData(context: Context, result: io.flutter.plugin.common.MethodChannel.Result) {
         NetMonsterFactory.get(context).apply {
             val merged = getCells()
-            merged.forEach {
-                it.let(processor = transformer)
+            merged.forEach { cell ->
+
+                when (cell) {
+
+                    is CellNr -> {
+                        Log.d(TAG, "requestData: NR")
+
+                        cells.add(getNr(cell))
+                    }
+                    is CellLte -> {
+                        Log.d(TAG, "requestData: LTE")
+                        cells.add(getLte(cell))
+
+                    }
+                    is CellWcdma -> {
+                        Log.d(TAG, "requestData: WCDMA")
+                        cells.add(getWcdma(cell))
+                    }
+                    is CellCdma -> {
+                        Log.d(TAG, "requestData: CDMA")
+
+                        cells.add(getCdma(cell))
+                    }
+                    is CellGsm -> {
+                        Log.d(TAG, "requestData: GSM")
+
+                        cells.add(getGsm(cell))
+                    }
+                    is CellTdscdma -> {
+                        Log.d(TAG, "requestData: TDSCDMA")
+
+                        cells.add(getTdscdma(cell))
+                    }
+
+                    else -> {
+                        Log.d(TAG, "requestData: ")
+                    }
+
+                }
             }
             Log.d("NTM-RES", " \n${merged.joinToString(separator = "\n")}")
         }
+
+//        if(list[0] is CellLte)
+        Log.d(TAG, "requestData list siz: ${list.size}")
+
+//        list.forEach { cell ->
+//
+//            when (cell) {
+//
+//                is CellNr -> {
+//                    Log.d(TAG, "requestData: NR")
+//
+//                    cells.add(getNr(cell))
+//                }
+//                is CellLte -> {
+//                    Log.d(TAG, "requestData: LTE")
+//                    cells.add(getLte(cell))
+//
+//                }
+//                is CellWcdma -> {
+//                    Log.d(TAG, "requestData: WCDMA")
+//                    cells.add(getWcdma(cell))
+//                }
+//                is CellCdma -> {
+//                    Log.d(TAG, "requestData: CDMA")
+//
+//                    cells.add(getCdma(cell))
+//                }
+//                is CellGsm -> {
+//                    Log.d(TAG, "requestData: GSM")
+//
+//                    cells.add(getGsm(cell))
+//                }
+//                is CellTdscdma -> {
+//                    Log.d(TAG, "requestData: TDSCDMA")
+//
+//                    cells.add(getTdscdma(cell))
+//                }
+//
+//            }
+//
+//
+//        }
 
         result.success("Your dbm is : ${Gson().toJson(cells)}")
 

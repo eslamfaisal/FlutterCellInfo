@@ -15,8 +15,12 @@ fun getCdma(cell: CellCdma): CellCDMA {
     cellCDMA.band = Band()
     cell.band?.let {
         cellCDMA.band.channelNumber = it.channelNumber
-        cellCDMA.band.number = it.number!!
-        cellCDMA.band.name = it.name!!
+        it.number?.let {
+            cellCDMA.band.number = it
+        }
+        it.name?.let {
+            cellCDMA.band.name = it
+        }
     }
 
     cellCDMA.network =
@@ -29,12 +33,24 @@ fun getCdma(cell: CellCdma): CellCDMA {
 
     cellCDMA.signalCDMA = SignalCDMA()
     cell.signal.let {
-        cellCDMA.signalCDMA.cdmaEcio = cell.signal.cdmaEcio!!
-        cellCDMA.signalCDMA.cdmaRssi = cell.signal.cdmaRssi!!
-        cellCDMA.signalCDMA.evdoRssi = cell.signal.evdoRssi!!
-        cellCDMA.signalCDMA.evdoSnr = cell.signal.evdoSnr!!
-        cellCDMA.signalCDMA.evdoEcio = cell.signal.evdoEcio!!
-        cellCDMA.signalCDMA.dbm = cell.signal.dbm!!
+        cell.signal.cdmaEcio?.let {
+            cellCDMA.signalCDMA.cdmaEcio = it
+        }
+        cell.signal.cdmaRssi?.let {
+            cellCDMA.signalCDMA.cdmaRssi = it
+        }
+        cell.signal.evdoRssi?.let {
+            cellCDMA.signalCDMA.evdoRssi = it
+        }
+        cell.signal.evdoSnr?.let {
+            cellCDMA.signalCDMA.evdoSnr = it
+        }
+        cell.signal.evdoEcio?.let {
+            cellCDMA.signalCDMA.evdoEcio = it
+        }
+        cell.signal.dbm?.let {
+            cellCDMA.signalCDMA.dbm = it
+        }
     }
 
     return cellCDMA

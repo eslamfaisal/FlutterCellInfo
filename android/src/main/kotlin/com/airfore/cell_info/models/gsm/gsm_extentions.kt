@@ -14,8 +14,12 @@ fun getGsm(cell: CellGsm): CellGSM {
     cellGSM.bandGSM = BandGSM()
     cell.band?.let {
         cellGSM.bandGSM.channelNumber = it.channelNumber
-        cellGSM.bandGSM.number = it.number!!
-        cellGSM.bandGSM.name = it.name!!
+        it.number?.let {
+            cellGSM.bandGSM.number = it
+        }
+        it.name?.let {
+            cellGSM.bandGSM.name = it
+        }
         cellGSM.bandGSM.arfcn = it.arfcn
     }
 
@@ -29,10 +33,18 @@ fun getGsm(cell: CellGsm): CellGSM {
 
     cellGSM.signalGSM = SignalGSM()
     cell.signal.let {
-        cellGSM.signalGSM.bitErrorRate = cell.signal.bitErrorRate!!
-        cellGSM.signalGSM.rssi = cell.signal.rssi!!
-        cellGSM.signalGSM.timingAdvance = cell.signal.timingAdvance!!
-        cellGSM.signalGSM.dbm = cell.signal.dbm!!
+        cell.signal.bitErrorRate?.let {
+            cellGSM.signalGSM.bitErrorRate = it
+        }
+        cell.signal.rssi?.let {
+            cellGSM.signalGSM.rssi = it
+        }
+        cell.signal.timingAdvance?.let {
+            cellGSM.signalGSM.timingAdvance = it
+        }
+        cell.signal.dbm?.let {
+            cellGSM.signalGSM.dbm = it
+        }
     }
 
     return cellGSM
