@@ -49,3 +49,34 @@ fun getGsm(cell: CellGsm): CellGSM {
 
     return cellGSM
 }
+
+fun getGsmFake(cell: CellGsm? = null): CellGSM {
+
+    val cellGSM = CellGSM()
+    cellGSM.type = "GSM"
+
+    cellGSM.bandGSM = BandGSM()
+    cellGSM.connectionStatus = "cell.connectionStatus.toString()"
+
+    cellGSM.bandGSM = BandGSM()
+    cellGSM.bandGSM.channelNumber = 2
+    cellGSM.bandGSM.number = 0
+    cellGSM.bandGSM.name = ""
+    cellGSM.bandGSM.arfcn = 0
+
+
+    cellGSM.network =
+        Network()
+    cellGSM.network.iso = ""
+    cellGSM.network.mcc = ""
+    cellGSM.network.mnc = ""
+
+    cellGSM.signalGSM = SignalGSM()
+
+    cellGSM.signalGSM.bitErrorRate = 0
+    cellGSM.signalGSM.rssi = 0
+    cellGSM.signalGSM.timingAdvance = 0
+    cellGSM.signalGSM.dbm = 0
+
+    return cellGSM
+}

@@ -1,5 +1,9 @@
 package com.airfore.cell_info.models.common;
 
+import android.Manifest;
+
+import androidx.core.app.ActivityCompat;
+
 import java.io.Serializable;
 
 public class Cell implements Serializable {

@@ -5,6 +5,7 @@ import cz.mroczis.netmonster.core.model.cell.CellLte
 
 
 fun getLte(cell: CellLte): CellLTE {
+
     val cellLTE = CellLTE()
     cellLTE.type = "LTE"
 
@@ -65,6 +66,49 @@ fun getLte(cell: CellLte): CellLTE {
     cellLTE.tac = cell.tac
     cellLTE.pci = cell.pci
     cellLTE.subscriptionId = cell.subscriptionId
+
+    return cellLTE
+}
+
+fun getLteFake(cell: CellLte? = null): CellLTE {
+
+    val cellLTE = CellLTE()
+    cellLTE.type = "LTE"
+
+    cellLTE.bandwidth = 0
+    cellLTE.connectionStatus = " cell.connectionStatus.toString()"
+
+    cellLTE.bandLTE = BandLTE()
+    cellLTE.bandLTE.channelNumber = 0
+    cellLTE.bandLTE.number = 0
+    cellLTE.bandLTE.name = ""
+    cellLTE.bandLTE.downlinkEarfcn = 0
+
+
+    cellLTE.network =
+        Network()
+
+    cellLTE.network.iso = ""
+    cellLTE.network.mcc = "it.mcc"
+    cellLTE.network.mnc = ""
+
+    cellLTE.signalLTE = SignalLTE()
+    cellLTE.signalLTE.cqi = 0
+    cellLTE.signalLTE.rsrpAsu = 0
+    cellLTE.signalLTE.rssiAsu = 0
+    cellLTE.signalLTE.snr = 0.0
+    cellLTE.signalLTE.timingAdvance = 0
+    cellLTE.signalLTE.dbm = 0
+    cellLTE.signalLTE.rssi = 0
+    cellLTE.signalLTE.rsrp = 0.0
+
+
+    cellLTE.eci = 0
+    cellLTE.cid = 0
+    cellLTE.enb = 0
+    cellLTE.tac = 0
+    cellLTE.pci = 0
+    cellLTE.subscriptionId = 0
 
     return cellLTE
 }
