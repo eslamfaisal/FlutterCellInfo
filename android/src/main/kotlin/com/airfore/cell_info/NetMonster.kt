@@ -192,7 +192,7 @@ class NetMonster {
           //endregion
 
         Log.d(TAG, "requestData: "+Gson().toJson(cellsResponse))
-        result.success("Your dbm is : ${Gson().toJson(cellsResponse)}")
+        result.success(Gson().toJson(cellsResponse))
 
     }
 }
