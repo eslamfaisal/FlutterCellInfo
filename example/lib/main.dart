@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:cell_info/cell_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,6 +25,8 @@ class _MyAppState extends State<MyApp> {
     initPlatformState();
   }
 
+  String currentDBM = "";
+
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     CellsResponse cellsResponse;
@@ -32,12 +35,21 @@ class _MyAppState extends State<MyApp> {
       String platformVersion = await CellInfo.getCellInfo;
       final body = json.decode(platformVersion);
 
-
       cellsResponse = CellsResponse.fromJson(body);
-      print('primaryCellList.length ${cellsResponse.primaryCellList.length}');
-      print('primaryCellList.length ${cellsResponse.neighboringCellList.length}');
 
+      CellType currentCellInFirstChip = cellsResponse.primaryCellList[1];
+      if (currentCellInFirstChip.type == "LTE") {
+        currentDBM =
+            "LTE dbm = " + currentCellInFirstChip.lte.signalLTE.dbm.toString();
+      } else if (currentCellInFirstChip.type == "NR") {
+        currentDBM =
+            "NR dbm = " + currentCellInFirstChip.nr.signalNR.dbm.toString();
+      } else if (currentCellInFirstChip.type == "WCDMA") {
+        currentDBM = "WCDMA dbm = " +
+            currentCellInFirstChip.wcdma.signalWCDMA.dbm.toString();
 
+        print('currentDBM = '+currentDBM);
+      }
     } on PlatformException {
       _cellsResponse = null;
     }
@@ -60,7 +72,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_cellsResponse\n'),
+          child: Text('mahmoud = ${currentDBM}\n primary = ${_cellsResponse.primaryCellList.length.toString()} \n neighbor = ${_cellsResponse.neighboringCellList.length}'),
         ),
       ),
     );
