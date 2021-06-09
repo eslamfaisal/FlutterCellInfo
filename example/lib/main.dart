@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:cell_info/cell_info.dart';
 import 'package:cell_info/CellResponse.dart';
+import 'package:cell_info/cell_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
         currentDBM = "WCDMA dbm = " +
             currentCellInFirstChip.wcdma.signalWCDMA.dbm.toString();
 
-        print('currentDBM = '+currentDBM);
+        print('currentDBM = ' + currentDBM);
       }
     } on PlatformException {
       _cellsResponse = null;
@@ -70,9 +70,12 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('mahmoud = ${currentDBM}\n primary = ${_cellsResponse.primaryCellList.length.toString()} \n neighbor = ${_cellsResponse.neighboringCellList.length}'),
-        ),
+        body: _cellsResponse != null
+            ? Center(
+                child: Text(
+                    'mahmoud = ${currentDBM}\n primary = ${_cellsResponse.primaryCellList.length.toString()} \n neighbor = ${_cellsResponse.neighboringCellList.length}'),
+              )
+            : null,
       ),
     );
   }
