@@ -1,51 +1,60 @@
-import 'package:cell_info/models/common/cell_info.dart';
 
-class NrParameters extends BasicCellInfo {
+import 'package:cell_info/models/nr/nr_band.dart';
+import 'package:cell_info/models/nr/nr_signal.dart';
+
+import '../common/network.dart';
+
+class Nr {
+  BandNR bandNR;
   int nci;
-  int tac;
   int pci;
-  int csiRsrp;
-  int csiRsrq;
-  int csiSinr;
-  int ssRsrp;
-  int ssRsrq;
-  int ssSinr;
+  SignalNR signalNR;
+  int tac;
+  String connectionStatus;
+  Network network;
+  String type;
 
-  NrParameters({
-    this.nci,
-    this.tac,
-    this.pci,
-    this.csiRsrp,
-    this.csiRsrq,
-    this.csiSinr,
-    this.ssRsrp,
-    this.ssRsrq,
-    this.ssSinr,
-  });
+  Nr(
+      {this.bandNR,
+        this.nci,
+        this.pci,
+        this.signalNR,
+        this.tac,
+        this.connectionStatus,
+        this.network,
+        this.type});
 
-  NrParameters.fromJson(Map<String, dynamic> map) {
-    this.nci = map['nci'];
-    this.tac = map['tac'];
-    this.pci = map['pci'];
-    this.csiRsrp = map['csiRsrp'];
-    this.csiRsrq = map['csiRsrq'];
-    this.csiSinr = map['csiSinr'];
-    this.ssRsrp = map['ssRsrp'];
-    this.ssRsrq = map['ssRsrq'];
-    this.ssSinr = map['ssSinr'];
+  Nr.fromJson(Map<String, dynamic> json) {
+    bandNR =
+    json['bandNR'] != null ? new BandNR.fromJson(json['bandNR']) : null;
+    nci = json['nci'];
+    pci = json['pci'];
+    signalNR = json['signalNR'] != null
+        ? new SignalNR.fromJson(json['signalNR'])
+        : null;
+    tac = json['tac'];
+    connectionStatus = json['connectionStatus'];
+    network =
+    json['network'] != null ? new Network.fromJson(json['network']) : null;
+    type = json['type'];
+  }
 
-    Map<String, dynamic> toJson() {
-      final Map<String, dynamic> data = new Map<String, dynamic>();
-      data['nci'] = this.nci;
-      data['tac'] = this.tac;
-      data['pci'] = this.pci;
-      data['csiRsrp'] = this.csiRsrp;
-      data['csiRsrq'] = this.csiRsrq;
-      data['csiSinr'] = this.csiSinr;
-      data['ssRsrp'] = this.ssRsrp;
-      data['ssRsrq'] = this.ssRsrq;
-      data['ssSinr'] = this.ssSinr;
-      return data;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.bandNR != null) {
+      data['bandNR'] = this.bandNR.toJson();
     }
+    data['nci'] = this.nci;
+    data['pci'] = this.pci;
+    if (this.signalNR != null) {
+      data['signalNR'] = this.signalNR.toJson();
+    }
+    data['tac'] = this.tac;
+    data['connectionStatus'] = this.connectionStatus;
+    if (this.network != null) {
+      data['network'] = this.network.toJson();
+    }
+    data['type'] = this.type;
+    return data;
   }
 }

@@ -1,39 +1,48 @@
-import 'package:cell_info/models/common/cell_info.dart';
 
-class GSMParameters extends BasicCellInfo {
-  int cid;
-  int lac;
-  int bsic;
-  int rssi;
-  int bitErrorRate;
-  int timingAdvance;
+import 'package:cell_info/models/gsm/gsm_band.dart';
+import 'package:cell_info/models/gsm/gsm_signal.dart';
 
-  GSMParameters({
-    this.cid,
-    this.lac,
-    this.bsic,
-    this.rssi,
-    this.bitErrorRate,
-    this.timingAdvance,
-  });
+import '../common/network.dart';
 
-  GSMParameters.fromJson(Map<String, dynamic> map) {
-    this.cid = map['cid'];
-    this.lac = map['lac'];
-    this.bsic = map['bsic'];
-    this.rssi = map['rssi'];
-    this.bitErrorRate = map['bitErrorRate'];
-    this.timingAdvance = map['timingAdvance'];
+class Gsm {
+  BandGSM bandGSM;
+  SignalGSM signalGSM;
+  String connectionStatus;
+  Network network;
+  String type;
 
-    Map<String, dynamic> toJson() {
-      final Map<String, dynamic> data = new Map<String, dynamic>();
-      data['cid'] = this.cid;
-      data['lac'] = this.lac;
-      data['bsic'] = this.bsic;
-      data['rssi'] = this.rssi;
-      data['bitErrorRate'] = this.bitErrorRate;
-      data['timingAdvance'] = this.timingAdvance;
-      return data;
+  Gsm(
+      {this.bandGSM,
+        this.signalGSM,
+        this.connectionStatus,
+        this.network,
+        this.type});
+
+  Gsm.fromJson(Map<String, dynamic> json) {
+    bandGSM =
+    json['bandGSM'] != null ? new BandGSM.fromJson(json['bandGSM']) : null;
+    signalGSM = json['signalGSM'] != null
+        ? new SignalGSM.fromJson(json['signalGSM'])
+        : null;
+    connectionStatus = json['connectionStatus'];
+    network =
+    json['network'] != null ? new Network.fromJson(json['network']) : null;
+    type = json['type'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.bandGSM != null) {
+      data['bandGSM'] = this.bandGSM.toJson();
     }
+    if (this.signalGSM != null) {
+      data['signalGSM'] = this.signalGSM.toJson();
+    }
+    data['connectionStatus'] = this.connectionStatus;
+    if (this.network != null) {
+      data['network'] = this.network.toJson();
+    }
+    data['type'] = this.type;
+    return data;
   }
 }

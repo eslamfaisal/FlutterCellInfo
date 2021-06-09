@@ -1,51 +1,50 @@
-import 'package:cell_info/models/common/cell_info.dart';
 
-class CDMAParameters extends BasicCellInfo {
-  int nid;
+import 'package:cell_info/models/cdma/cdma_band.dart';
+import 'package:cell_info/models/cdma/cdma_signal.dart';
+import 'package:cell_info/models/common/network.dart';
+
+class Cdma {
+  Band band;
   int bid;
-  double lat;
-  double lon;
-  double cdmaEcio;
-  int cdmaRssi;
-  double evdoEcio;
-  int evdoRssi;
-  int evdoSnr;
+  SignalCDMA signalCDMA;
+  String connectionStatus;
+  Network network;
+  String type;
 
-  CDMAParameters({
-    this.nid,
-    this.bid,
-    this.lat,
-    this.lon,
-    this.cdmaEcio,
-    this.cdmaRssi,
-    this.evdoEcio,
-    this.evdoRssi,
-    this.evdoSnr,
-  });
+  Cdma(
+      {this.band,
+        this.bid,
+        this.signalCDMA,
+        this.connectionStatus,
+        this.network,
+        this.type});
 
-  CDMAParameters.fromJson(Map<String, dynamic> map) {
-    this.nid = map['nid'];
-    this.bid = map['bid'];
-    this.lat = map['lat'];
-    this.lon = map['lon'];
-    this.cdmaEcio = map['cdmaEcio'];
-    this.cdmaRssi = map['cdmaRssi'];
-    this.evdoEcio = map['evdoEcio'];
-    this.evdoRssi = map['evdoRssi'];
-    this.evdoSnr = map['evdoSnr'];
+  Cdma.fromJson(Map<String, dynamic> json) {
+    band = json['band'] != null ? new Band.fromJson(json['band']) : null;
+    bid = json['bid'];
+    signalCDMA = json['signalCDMA'] != null
+        ? new SignalCDMA.fromJson(json['signalCDMA'])
+        : null;
+    connectionStatus = json['connectionStatus'];
+    network =
+    json['network'] != null ? new Network.fromJson(json['network']) : null;
+    type = json['type'];
+  }
 
-    Map<String, dynamic> toJson() {
-      final Map<String, dynamic> data = new Map<String, dynamic>();
-      data['nid'] = this.nid;
-      data['bid'] = this.bid;
-      data['lat'] = this.lat;
-      data['lon'] = this.lon;
-      data['cdmaEcio'] = this.cdmaEcio;
-      data['cdmaRssi'] = this.cdmaRssi;
-      data['evdoEcio'] = this.evdoEcio;
-      data['evdoRssi'] = this.evdoRssi;
-      data['evdoSnr'] = this.evdoSnr;
-      return data;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.band != null) {
+      data['band'] = this.band.toJson();
     }
+    data['bid'] = this.bid;
+    if (this.signalCDMA != null) {
+      data['signalCDMA'] = this.signalCDMA.toJson();
+    }
+    data['connectionStatus'] = this.connectionStatus;
+    if (this.network != null) {
+      data['network'] = this.network.toJson();
+    }
+    data['type'] = this.type;
+    return data;
   }
 }
