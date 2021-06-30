@@ -31,6 +31,11 @@ class CellInfoPlugin: FlutterPlugin, MethodCallHandler {
       val net = NetMonster()
       net.requestData(context!!,result)
 
+    } else if (call.method == "sim_info") {
+
+      val net = NetMonster()
+      net.simsInfo(context!!,result)
+
     } else {
       result.notImplemented()
     }

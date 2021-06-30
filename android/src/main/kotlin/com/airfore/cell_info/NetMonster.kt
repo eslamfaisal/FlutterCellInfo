@@ -2,10 +2,10 @@ package com.airfore.cell_info
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
+import android.telephony.SubscriptionManager
 import android.util.Log
-import com.airfore.cell_info.models.CellData
-import com.airfore.cell_info.models.CellType
-import com.airfore.cell_info.models.CellsResponse
+import com.airfore.cell_info.models.*
 import com.airfore.cell_info.models.cdma.getCdma
 import com.airfore.cell_info.models.gsm.getGsm
 import com.airfore.cell_info.models.lte.getLte
@@ -19,6 +19,7 @@ import cz.mroczis.netmonster.core.model.connection.PrimaryConnection
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 class NetMonster {
 
     private val TAG = "NetMonster"
@@ -29,8 +30,8 @@ class NetMonster {
 
     @SuppressLint("MissingPermission")
     fun requestData(
-        context: Context,
-        result: io.flutter.plugin.common.MethodChannel.Result? = null
+            context: Context,
+            result: io.flutter.plugin.common.MethodChannel.Result? = null
     ): CellsResponse {
         NetMonsterFactory.get(context).apply {
             val merged = getCells()
@@ -39,7 +40,7 @@ class NetMonster {
                 val date = System.currentTimeMillis()
                 val offset: Int = TimeZone.getDefault().getOffset(date)
                 cellData.timestamp = offset
-                Log.d("timestamptimestamp", "requestData: ${cellData.timestamp }")
+                Log.d("timestamptimestamp", "requestData: ${cellData.timestamp}")
                 when (cell) {
 
                     is CellNr -> {
@@ -175,6 +176,25 @@ class NetMonster {
         Log.d(TAG, "requestData: " + Gson().toJson(cellsResponse))
         result?.success(Gson().toJson(cellsResponse))
         return cellsResponse
+    }
+
+    fun simsInfo(context: Context, result: io.flutter.plugin.common.MethodChannel.Result? = null): ArrayList<SIMInfo> {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) return ArrayList()
+
+        val simInfoLists = ArrayList<SIMInfo>()
+        val subscriptionManager = context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
+        val activeSubscriptionInfoList = subscriptionManager.activeSubscriptionInfoList
+        for (subscriptionInfo in activeSubscriptionInfoList) {
+            val carrierName = subscriptionInfo.carrierName
+            val displayName = subscriptionInfo.displayName
+            val mcc = subscriptionInfo.mcc
+            val mnc = subscriptionInfo.mnc
+            val subscriptionInfoNumber = subscriptionInfo.number
+            simInfoLists.add(SIMInfo(carrierName.toString(), displayName.toString(), mcc, mnc, subscriptionInfoNumber))
+        }
+
+        result?.success(Gson().toJson(SIMInfoResponse(simInfoLists)))
+        return simInfoLists
     }
 }
 

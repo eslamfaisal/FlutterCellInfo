@@ -69,7 +69,152 @@ public class CellData implements Serializable {
     private int ecio;
     private int arfcn;
 
+    private String OSVERSION = System.getProperty("os.version");
+    private String RELEASE = android.os.Build.VERSION.RELEASE;
+    private String DEVICE = android.os.Build.DEVICE;
+    private String MODEL = android.os.Build.MODEL;
+    private String PRODUCT = android.os.Build.PRODUCT;
+    private String BRAND = android.os.Build.BRAND;
+    private String DISPLAY = android.os.Build.DISPLAY;
+    private String CPU_ABI = android.os.Build.CPU_ABI;
+    private String CPU_ABI2 = android.os.Build.CPU_ABI2;
+    private String UNKNOWN = android.os.Build.UNKNOWN;
+    private String HARDWARE = android.os.Build.HARDWARE;
+    private String ID = android.os.Build.ID;
+    private String MANUFACTURER = android.os.Build.MANUFACTURER;
+    private String SERIAL = android.os.Build.SERIAL;
+    private String USER = android.os.Build.USER;
+    private String HOST = android.os.Build.HOST;
+
     public CellData() {
+    }
+
+    public String getOSVERSION() {
+        return OSVERSION;
+    }
+
+    public String getRELEASE() {
+        return RELEASE;
+    }
+
+    public void setRELEASE(String RELEASE) {
+        this.RELEASE = RELEASE;
+    }
+
+    public String getDEVICE() {
+        return DEVICE;
+    }
+
+    public void setDEVICE(String DEVICE) {
+        this.DEVICE = DEVICE;
+    }
+
+    public String getMODEL() {
+        return MODEL;
+    }
+
+    public void setMODEL(String MODEL) {
+        this.MODEL = MODEL;
+    }
+
+    public String getPRODUCT() {
+        return PRODUCT;
+    }
+
+    public void setPRODUCT(String PRODUCT) {
+        this.PRODUCT = PRODUCT;
+    }
+
+    public String getBRAND() {
+        return BRAND;
+    }
+
+    public void setBRAND(String BRAND) {
+        this.BRAND = BRAND;
+    }
+
+    public String getDISPLAY() {
+        return DISPLAY;
+    }
+
+    public void setDISPLAY(String DISPLAY) {
+        this.DISPLAY = DISPLAY;
+    }
+
+    public String getCPU_ABI() {
+        return CPU_ABI;
+    }
+
+    public void setCPU_ABI(String CPU_ABI) {
+        this.CPU_ABI = CPU_ABI;
+    }
+
+    public String getCPU_ABI2() {
+        return CPU_ABI2;
+    }
+
+    public void setCPU_ABI2(String CPU_ABI2) {
+        this.CPU_ABI2 = CPU_ABI2;
+    }
+
+    public String getUNKNOWN() {
+        return UNKNOWN;
+    }
+
+    public void setUNKNOWN(String UNKNOWN) {
+        this.UNKNOWN = UNKNOWN;
+    }
+
+    public String getHARDWARE() {
+        return HARDWARE;
+    }
+
+    public void setHARDWARE(String HARDWARE) {
+        this.HARDWARE = HARDWARE;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getMANUFACTURER() {
+        return MANUFACTURER;
+    }
+
+    public void setMANUFACTURER(String MANUFACTURER) {
+        this.MANUFACTURER = MANUFACTURER;
+    }
+
+    public String getSERIAL() {
+        return SERIAL;
+    }
+
+    public void setSERIAL(String SERIAL) {
+        this.SERIAL = SERIAL;
+    }
+
+    public String getUSER() {
+        return USER;
+    }
+
+    public void setUSER(String USER) {
+        this.USER = USER;
+    }
+
+    public String getHOST() {
+        return HOST;
+    }
+
+    public void setHOST(String HOST) {
+        this.HOST = HOST;
+    }
+
+    public void setOSVERSION(String OSVERSION) {
+        this.OSVERSION = OSVERSION;
     }
 
     public int getTimestamp() {

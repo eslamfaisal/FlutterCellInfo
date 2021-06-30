@@ -21,6 +21,9 @@ class MainActivity : FlutterActivity() {
         )
 
         val netMonster = NetMonster()
+        netMonster.simsInfo(this).forEach {
+            Log.d("simsInfo", "onStart: ${it}")
+        }
         netMonster.requestData(this).cellDataList.forEach {
             Log.d("cellDataList", "onStart: ${it.type}")
         }
