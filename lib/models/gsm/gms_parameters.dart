@@ -1,29 +1,26 @@
 import 'package:cell_info/models/common/network.dart';
+import 'gsm_band.dart';
+import 'gsm_signal.dart';
 
-import 'cdma_band.dart';
-import 'cdma_signal.dart';
-
-class Cdma {
-  Band band;
-  int bid;
-  SignalCDMA signalCDMA;
+class Gsm {
+  BandGSM bandGSM;
+  SignalGSM signalGSM;
   String connectionStatus;
   Network network;
   String type;
 
-  Cdma(
-      {this.band,
-        this.bid,
-        this.signalCDMA,
+  Gsm(
+      {this.bandGSM,
+        this.signalGSM,
         this.connectionStatus,
         this.network,
         this.type});
 
-  Cdma.fromJson(Map<String, dynamic> json) {
-    band = json['band'] != null ? new Band.fromJson(json['band']) : null;
-    bid = json['bid'];
-    signalCDMA = json['signalCDMA'] != null
-        ? new SignalCDMA.fromJson(json['signalCDMA'])
+  Gsm.fromJson(Map<String, dynamic> json) {
+    bandGSM =
+    json['bandGSM'] != null ? new BandGSM.fromJson(json['bandGSM']) : null;
+    signalGSM = json['signalGSM'] != null
+        ? new SignalGSM.fromJson(json['signalGSM'])
         : null;
     connectionStatus = json['connectionStatus'];
     network =
@@ -33,12 +30,11 @@ class Cdma {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.band != null) {
-      data['band'] = this.band.toJson();
+    if (this.bandGSM != null) {
+      data['bandGSM'] = this.bandGSM.toJson();
     }
-    data['bid'] = this.bid;
-    if (this.signalCDMA != null) {
-      data['signalCDMA'] = this.signalCDMA.toJson();
+    if (this.signalGSM != null) {
+      data['signalGSM'] = this.signalGSM.toJson();
     }
     data['connectionStatus'] = this.connectionStatus;
     if (this.network != null) {
