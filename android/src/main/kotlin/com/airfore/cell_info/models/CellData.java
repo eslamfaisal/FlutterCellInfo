@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class CellData implements Serializable {
 
+    private int timestamp;
     private String type;
     private Integer subscriptionId;
     private String connectionStatus;
@@ -69,6 +70,14 @@ public class CellData implements Serializable {
     private int arfcn;
 
     public CellData() {
+    }
+
+    public int getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(int timestamp) {
+        this.timestamp = timestamp;
     }
 
     public int getChannelNumber() {

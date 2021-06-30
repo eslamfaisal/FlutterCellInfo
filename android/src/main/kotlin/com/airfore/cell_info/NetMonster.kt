@@ -16,6 +16,8 @@ import com.google.gson.Gson
 import cz.mroczis.netmonster.core.factory.NetMonsterFactory
 import cz.mroczis.netmonster.core.model.cell.*
 import cz.mroczis.netmonster.core.model.connection.PrimaryConnection
+import java.util.*
+import kotlin.collections.ArrayList
 
 class NetMonster {
 
@@ -33,14 +35,17 @@ class NetMonster {
         NetMonsterFactory.get(context).apply {
             val merged = getCells()
             merged.forEach { cell ->
-
+                val cellData = CellData()
+                val date = System.currentTimeMillis()
+                val offset: Int = TimeZone.getDefault().getOffset(date)
+                cellData.timestamp = offset
+                Log.d("timestamptimestamp", "requestData: ${cellData.timestamp }")
                 when (cell) {
 
                     is CellNr -> {
                         Log.d(TAG, "requestData: NR")
 
                         val cellType = CellType()
-                        val cellData = CellData()
                         cellType.nr = getNr(cell, cellData)
                         cellType.type = "NR"
                         when (cell.connectionStatus) {
@@ -58,7 +63,7 @@ class NetMonster {
                         Log.d(TAG, "requestData: LTE")
 
                         val cellType = CellType()
-                        val cellData = CellData()
+
 
                         cellType.lte = getLte(cell, cellData)
                         cellType.type = "LTE"
@@ -76,7 +81,7 @@ class NetMonster {
                         Log.d(TAG, "requestData: WCDMA")
 
                         val cellType = CellType()
-                        val cellData = CellData()
+
 
                         cellType.wcdma = getWcdma(cell, cellData)
                         cellType.type = "WCDMA"
@@ -95,7 +100,7 @@ class NetMonster {
                         Log.d(TAG, "requestData: CDMA")
 
                         val cellType = CellType()
-                        val cellData = CellData()
+
 
                         cellType.cdma = getCdma(cell, cellData)
                         cellType.type = "WCDMA"
@@ -115,7 +120,7 @@ class NetMonster {
 
 
                         val cellType = CellType()
-                        val cellData = CellData()
+
 
                         cellType.gsm = getGsm(cell, cellData)
                         cellType.type = "GSM"
@@ -133,7 +138,7 @@ class NetMonster {
                         Log.d(TAG, "requestData: TDSCDMA")
 
                         val cellType = CellType()
-                        val cellData = CellData()
+
                         cellType.tdscdma = getTdscdma(cell, cellData)
                         cellType.type = "TDSCDMA"
                         when (cell.connectionStatus) {
