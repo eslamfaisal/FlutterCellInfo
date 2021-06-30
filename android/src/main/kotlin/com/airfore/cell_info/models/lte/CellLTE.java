@@ -13,7 +13,7 @@ public class CellLTE extends Cell implements Serializable {
     private Integer pci;
     private Integer enb;
     private Integer cid;
-    private Integer ecgi;
+    private String ecgi;
     private BandLTE bandLTE;
     private SignalLTE signalLTE;
 
@@ -65,11 +65,11 @@ public class CellLTE extends Cell implements Serializable {
         this.cid = cid;
     }
 
-    public Integer getEcgi() {
+    public String getEcgi() {
         return ecgi;
     }
 
-    public void setEcgi(Integer ecgi) {
+    public void setEcgi(String ecgi) {
         this.ecgi = ecgi;
     }
 

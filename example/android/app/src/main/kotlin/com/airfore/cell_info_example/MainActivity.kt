@@ -1,7 +1,9 @@
 package com.airfore.cell_info_example
 
 import android.Manifest
+import android.util.Log
 import androidx.core.app.ActivityCompat
+import com.airfore.cell_info.NetMonster
 import io.flutter.embedding.android.FlutterActivity
 
 class MainActivity : FlutterActivity() {
@@ -18,6 +20,10 @@ class MainActivity : FlutterActivity() {
             33
         )
 
+        val netMonster = NetMonster()
+        netMonster.requestData(this).cellDataList.forEach {
+            Log.d("cellDataList", "onStart: ${it.type}")
+        }
     }
 
 }

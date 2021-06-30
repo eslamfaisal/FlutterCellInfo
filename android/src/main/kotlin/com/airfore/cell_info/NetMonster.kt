@@ -3,20 +3,15 @@ package com.airfore.cell_info
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
+import com.airfore.cell_info.models.CellData
 import com.airfore.cell_info.models.CellType
 import com.airfore.cell_info.models.CellsResponse
 import com.airfore.cell_info.models.cdma.getCdma
-import com.airfore.cell_info.models.cdma.getCdmaFake
 import com.airfore.cell_info.models.gsm.getGsm
-import com.airfore.cell_info.models.gsm.getGsmFake
 import com.airfore.cell_info.models.lte.getLte
-import com.airfore.cell_info.models.lte.getLteFake
 import com.airfore.cell_info.models.nr.getNr
-import com.airfore.cell_info.models.nr.getNrFake
 import com.airfore.cell_info.models.tdscdma.getTdscdma
-import com.airfore.cell_info.models.tdscdma.getTdscdmaFake
 import com.airfore.cell_info.models.wcdma.getWcdma
-import com.airfore.cell_info.models.wcdma.getWcdmaFake
 import com.google.gson.Gson
 import cz.mroczis.netmonster.core.factory.NetMonsterFactory
 import cz.mroczis.netmonster.core.model.cell.*
@@ -28,9 +23,13 @@ class NetMonster {
 
     private val primaryCellList: MutableList<CellType> = ArrayList()
     private val neighboringCellList: MutableList<CellType> = ArrayList()
+    private val cellDataList: MutableList<CellData> = ArrayList()
 
     @SuppressLint("MissingPermission")
-    fun requestData(context: Context, result: io.flutter.plugin.common.MethodChannel.Result) {
+    fun requestData(
+        context: Context,
+        result: io.flutter.plugin.common.MethodChannel.Result? = null
+    ): CellsResponse {
         NetMonsterFactory.get(context).apply {
             val merged = getCells()
             merged.forEach { cell ->
@@ -41,7 +40,8 @@ class NetMonster {
                         Log.d(TAG, "requestData: NR")
 
                         val cellType = CellType()
-                        cellType.nr =  getNr(cell)
+                        val cellData = CellData()
+                        cellType.nr = getNr(cell, cellData)
                         cellType.type = "NR"
                         when (cell.connectionStatus) {
                             is PrimaryConnection -> {
@@ -51,13 +51,16 @@ class NetMonster {
                                 neighboringCellList.add(cellType)
                             }
                         }
+                        cellDataList.add(cellData)
 
                     }
                     is CellLte -> {
                         Log.d(TAG, "requestData: LTE")
 
                         val cellType = CellType()
-                        cellType.lte = getLte(cell)
+                        val cellData = CellData()
+
+                        cellType.lte = getLte(cell, cellData)
                         cellType.type = "LTE"
                         when (cell.connectionStatus) {
                             is PrimaryConnection -> {
@@ -67,13 +70,15 @@ class NetMonster {
                                 neighboringCellList.add(cellType)
                             }
                         }
-
+                        cellDataList.add(cellData)
                     }
                     is CellWcdma -> {
                         Log.d(TAG, "requestData: WCDMA")
 
                         val cellType = CellType()
-                        cellType.wcdma = getWcdma(cell)
+                        val cellData = CellData()
+
+                        cellType.wcdma = getWcdma(cell, cellData)
                         cellType.type = "WCDMA"
                         when (cell.connectionStatus) {
                             is PrimaryConnection -> {
@@ -83,13 +88,16 @@ class NetMonster {
                                 neighboringCellList.add(cellType)
                             }
                         }
+                        cellDataList.add(cellData)
 
                     }
                     is CellCdma -> {
                         Log.d(TAG, "requestData: CDMA")
 
                         val cellType = CellType()
-                        cellType.cdma = getCdma(cell)
+                        val cellData = CellData()
+
+                        cellType.cdma = getCdma(cell, cellData)
                         cellType.type = "WCDMA"
                         when (cell.connectionStatus) {
                             is PrimaryConnection -> {
@@ -100,14 +108,16 @@ class NetMonster {
                             }
                         }
 
-
+                        cellDataList.add(cellData)
                     }
                     is CellGsm -> {
                         Log.d(TAG, "requestData: GSM")
 
 
                         val cellType = CellType()
-                        cellType.gsm = getGsm(cell)
+                        val cellData = CellData()
+
+                        cellType.gsm = getGsm(cell, cellData)
                         cellType.type = "GSM"
                         when (cell.connectionStatus) {
                             is PrimaryConnection -> {
@@ -117,13 +127,14 @@ class NetMonster {
                                 neighboringCellList.add(cellType)
                             }
                         }
-
+                        cellDataList.add(cellData)
                     }
                     is CellTdscdma -> {
                         Log.d(TAG, "requestData: TDSCDMA")
 
                         val cellType = CellType()
-                        cellType.tdscdma = getTdscdma(cell)
+                        val cellData = CellData()
+                        cellType.tdscdma = getTdscdma(cell, cellData)
                         cellType.type = "TDSCDMA"
                         when (cell.connectionStatus) {
                             is PrimaryConnection -> {
@@ -133,7 +144,7 @@ class NetMonster {
                                 neighboringCellList.add(cellType)
                             }
                         }
-
+                        cellDataList.add(cellData)
                     }
 
                     else -> {
@@ -148,9 +159,22 @@ class NetMonster {
         val cellsResponse = CellsResponse()
         cellsResponse.neighboringCellList = neighboringCellList
         cellsResponse.primaryCellList = primaryCellList
+        cellsResponse.cellDataList = cellDataList
+
+        cellDataList.forEach {
+            Log.d("it.subscriptionId", "requestData: ${it.type}")
+            Log.d("it.subscriptionId", "requestData: ${it.subscriptionId}")
+        }
 
 
-        // region fake data
+        Log.d(TAG, "requestData: " + Gson().toJson(cellsResponse))
+        result?.success(Gson().toJson(cellsResponse))
+        return cellsResponse
+    }
+}
+
+
+// region fake data
 //
 //        val wcdmaCellType = CellType()
 //        wcdmaCellType.wcdma = getWcdmaFake()
@@ -189,10 +213,4 @@ class NetMonster {
 //        cdmaCellType.type = "CDMA"
 //        cellsResponse.neighboringCellList.add(cdmaCellType)
 //        cellsResponse.primaryCellList.add(cdmaCellType)
-          //endregion
-
-        Log.d(TAG, "requestData: "+Gson().toJson(cellsResponse))
-        result.success(Gson().toJson(cellsResponse))
-
-    }
-}
+//endregion

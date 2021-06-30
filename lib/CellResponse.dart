@@ -367,6 +367,7 @@ class Lte {
   int eci;
   int enb;
   int pci;
+  String ecgi;
   SignalLTE signalLTE;
   int tac;
   String connectionStatus;
@@ -383,6 +384,7 @@ class Lte {
       this.pci,
       this.signalLTE,
       this.tac,
+      this.ecgi,
       this.connectionStatus,
       this.network,
       this.subscriptionId,
@@ -395,6 +397,7 @@ class Lte {
     cid = json['cid'];
     eci = json['eci'];
     enb = json['enb'];
+    ecgi = json['ecgi'];
     pci = json['pci'];
     signalLTE = json['signalLTE'] != null
         ? new SignalLTE.fromJson(json['signalLTE'])
@@ -417,6 +420,7 @@ class Lte {
     data['eci'] = this.eci;
     data['enb'] = this.enb;
     data['pci'] = this.pci;
+    data['ecgi'] = this.ecgi;
     if (this.signalLTE != null) {
       data['signalLTE'] = this.signalLTE.toJson();
     }

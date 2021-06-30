@@ -1,26 +1,33 @@
 package com.airfore.cell_info.models.gsm
 
+import com.airfore.cell_info.models.CellData
 import com.airfore.cell_info.models.common.Network
 import cz.mroczis.netmonster.core.model.cell.CellGsm
 
-fun getGsm(cell: CellGsm): CellGSM {
+fun getGsm(cell: CellGsm, cellData: CellData): CellGSM {
 
     val cellGSM = CellGSM()
     cellGSM.type = "GSM"
+    cellData.type = "GSM"
 
     cellGSM.bandGSM = BandGSM()
     cellGSM.connectionStatus = cell.connectionStatus.toString()
+    cellData.connectionStatus = cell.connectionStatus.toString()
 
     cellGSM.bandGSM = BandGSM()
     cell.band?.let {
         cellGSM.bandGSM.channelNumber = it.channelNumber
+        cellData.bandChannelNumber = it.channelNumber
         it.number?.let {
             cellGSM.bandGSM.number = it
+            cellData.bandNumber = it
         }
         it.name?.let {
             cellGSM.bandGSM.name = it
+            cellData.bandName = it
         }
         cellGSM.bandGSM.arfcn = it.arfcn
+        cellData.arfcn = it.arfcn
     }
 
     cellGSM.network =
@@ -46,6 +53,9 @@ fun getGsm(cell: CellGsm): CellGSM {
             cellGSM.signalGSM.dbm = it
         }
     }
+
+    cellGSM.subscriptionId = cell.subscriptionId
+    cellData.subscriptionId = cell.subscriptionId
 
     return cellGSM
 }
