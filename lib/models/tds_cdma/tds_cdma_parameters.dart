@@ -1,27 +1,27 @@
 import 'package:cell_info/models/common/network.dart';
+import 'package:cell_info/models/tds_cdma/tds_cdma_signal.dart';
 import 'package:cell_info/models/wcdma/wcdma_band.dart';
-import 'package:cell_info/models/wcdma/wcdma_signal.dart';
 
-class Wcdma {
-  BandWCDMA bandWCDMA;
-  SignalWCDMA signalWCDMA;
+class Tdscdma {
+  BandWCDMA bandTDSCDMA;
+  SignalTDSCDMA signalTDSCDMA;
   String connectionStatus;
   Network network;
   String type;
 
-  Wcdma(
-      {this.bandWCDMA,
-        this.signalWCDMA,
+  Tdscdma(
+      {this.bandTDSCDMA,
+        this.signalTDSCDMA,
         this.connectionStatus,
         this.network,
         this.type});
 
-  Wcdma.fromJson(Map<String, dynamic> json) {
-    bandWCDMA = json['bandWCDMA'] != null
-        ? new BandWCDMA.fromJson(json['bandWCDMA'])
+  Tdscdma.fromJson(Map<String, dynamic> json) {
+    bandTDSCDMA = json['bandTDSCDMA'] != null
+        ? new BandWCDMA.fromJson(json['bandTDSCDMA'])
         : null;
-    signalWCDMA = json['signalWCDMA'] != null
-        ? new SignalWCDMA.fromJson(json['signalWCDMA'])
+    signalTDSCDMA = json['signalTDSCDMA'] != null
+        ? new SignalTDSCDMA.fromJson(json['signalTDSCDMA'])
         : null;
     connectionStatus = json['connectionStatus'];
     network =
@@ -31,11 +31,11 @@ class Wcdma {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.bandWCDMA != null) {
-      data['bandWCDMA'] = this.bandWCDMA.toJson();
+    if (this.bandTDSCDMA != null) {
+      data['bandTDSCDMA'] = this.bandTDSCDMA.toJson();
     }
-    if (this.signalWCDMA != null) {
-      data['signalWCDMA'] = this.signalWCDMA.toJson();
+    if (this.signalTDSCDMA != null) {
+      data['signalTDSCDMA'] = this.signalTDSCDMA.toJson();
     }
     data['connectionStatus'] = this.connectionStatus;
     if (this.network != null) {
