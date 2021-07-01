@@ -38,9 +38,7 @@ class NetMonster {
             val merged = getCells()
             merged.forEach { cell ->
                 val cellData = CellData()
-                val date = System.currentTimeMillis()
-                val offset: Int = TimeZone.getDefault().getOffset(date)
-                cellData.timestamp = offset
+                cellData.timestamp = System.currentTimeMillis()
                 Log.d("timestamptimestamp", "requestData: ${cellData.timestamp}")
                 when (cell) {
 
