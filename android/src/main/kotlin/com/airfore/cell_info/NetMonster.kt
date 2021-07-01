@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Build
 import android.telephony.SubscriptionManager
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.airfore.cell_info.models.*
 import com.airfore.cell_info.models.cdma.getCdma
 import com.airfore.cell_info.models.gsm.getGsm
@@ -178,8 +179,8 @@ class NetMonster {
         return cellsResponse
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
     fun simsInfo(context: Context, result: io.flutter.plugin.common.MethodChannel.Result? = null): ArrayList<SIMInfo> {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) return ArrayList()
 
         val simInfoLists = ArrayList<SIMInfo>()
         val subscriptionManager = context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
@@ -190,10 +191,13 @@ class NetMonster {
             val mcc = subscriptionInfo.mcc
             val mnc = subscriptionInfo.mnc
             val subscriptionInfoNumber = subscriptionInfo.number
+            Log.d(TAG, "carrierName: ${carrierName}")
             simInfoLists.add(SIMInfo(carrierName.toString(), displayName.toString(), mcc, mnc, subscriptionInfoNumber))
         }
 
-        result?.success(Gson().toJson(SIMInfoResponse(simInfoLists)))
+        val json = Gson().toJson(SIMInfoResponse(simInfoLists))
+        Log.d(TAG, "simsInfo: ${json}")
+        result?.success(json)
         return simInfoLists
     }
 }
