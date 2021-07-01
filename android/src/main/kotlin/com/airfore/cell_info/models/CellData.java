@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class CellData implements Serializable {
 
-    private int timestamp;
+    private long timestamp;
     private String type;
     private Integer subscriptionId;
     private String connectionStatus;
@@ -217,11 +217,11 @@ public class CellData implements Serializable {
         this.OSVERSION = OSVERSION;
     }
 
-    public int getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(int timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
