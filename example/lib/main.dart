@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
       cellsResponse = CellsResponse.fromJson(body);
 
       CellType currentCellInFirstChip = cellsResponse.primaryCellList[0];
-      if (currentCellInFirstChip.type == "LTE") {
+      if (currentCellInFirstChip.type == "LT  E") {
         currentDBM =
             "LTE dbm = " + currentCellInFirstChip.lte.signalLTE.dbm.toString();
       } else if (currentCellInFirstChip.type == "NR") {
