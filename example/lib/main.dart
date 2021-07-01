@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:cell_info/CellResponse.dart';
 import 'package:cell_info/cell_info.dart';
+import 'package:cell_info/models/common/cell_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
