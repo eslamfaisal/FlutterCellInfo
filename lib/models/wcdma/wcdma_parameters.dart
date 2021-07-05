@@ -3,11 +3,11 @@ import 'package:cell_info/models/wcdma/wcdma_band.dart';
 import 'package:cell_info/models/wcdma/wcdma_signal.dart';
 
 class Wcdma {
-  BandWCDMA bandWCDMA;
-  SignalWCDMA signalWCDMA;
-  String connectionStatus;
-  Network network;
-  String type;
+  BandWCDMA? bandWCDMA;
+  SignalWCDMA? signalWCDMA;
+  String? connectionStatus;
+  Network? network;
+  String? type;
 
   Wcdma(
       {this.bandWCDMA,
@@ -32,14 +32,14 @@ class Wcdma {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.bandWCDMA != null) {
-      data['bandWCDMA'] = this.bandWCDMA.toJson();
+      data['bandWCDMA'] = this.bandWCDMA!.toJson();
     }
     if (this.signalWCDMA != null) {
-      data['signalWCDMA'] = this.signalWCDMA.toJson();
+      data['signalWCDMA'] = this.signalWCDMA!.toJson();
     }
     data['connectionStatus'] = this.connectionStatus;
     if (this.network != null) {
-      data['network'] = this.network.toJson();
+      data['network'] = this.network!.toJson();
     }
     data['type'] = this.type;
     return data;

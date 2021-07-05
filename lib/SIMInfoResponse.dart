@@ -1,5 +1,5 @@
 class SIMInfoResponse {
-  List<SimInfoList> simInfoList;
+  List<SimInfoList>? simInfoList;
 
   SIMInfoResponse({this.simInfoList});
 
@@ -7,7 +7,7 @@ class SIMInfoResponse {
     if (json['simInfoList'] != null) {
       simInfoList = [];
       json['simInfoList'].forEach((v) {
-        simInfoList.add(new SimInfoList.fromJson(v));
+        simInfoList!.add(new SimInfoList.fromJson(v));
       });
     }
   }
@@ -15,18 +15,18 @@ class SIMInfoResponse {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.simInfoList != null) {
-      data['simInfoList'] = this.simInfoList.map((v) => v.toJson()).toList();
+      data['simInfoList'] = this.simInfoList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class SimInfoList {
-  String carrierName;
-  String displayName;
-  int mcc;
-  int mnc;
-  String subscriptionInfoNumber;
+  String? carrierName;
+  String? displayName;
+  int? mcc;
+  int? mnc;
+  String? subscriptionInfoNumber;
 
   SimInfoList(
       {this.carrierName,

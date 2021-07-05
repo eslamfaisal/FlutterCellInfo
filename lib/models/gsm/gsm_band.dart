@@ -1,8 +1,8 @@
 class BandGSM {
-  int arfcn;
-  int channelNumber;
-  String name;
-  int number;
+  int? arfcn;
+  int? channelNumber;
+  String? name;
+  int? number;
 
   BandGSM({this.arfcn, this.channelNumber, this.name, this.number});
 

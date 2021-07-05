@@ -1,13 +1,13 @@
 class SignalLTE {
-  int cqi;
-  double rsrp;
-  int rsrpAsu;
-  double rsrq;
-  int rssi;
-  int rssiAsu;
-  double snr;
-  int timingAdvance;
-  int dbm;
+  int? cqi;
+  double? rsrp;
+  int? rsrpAsu;
+  double? rsrq;
+  int? rssi;
+  int? rssiAsu;
+  double? snr;
+  int? timingAdvance;
+  int? dbm;
 
   SignalLTE(
       {this.cqi,

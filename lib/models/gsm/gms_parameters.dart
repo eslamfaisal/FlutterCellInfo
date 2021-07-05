@@ -3,11 +3,11 @@ import 'gsm_band.dart';
 import 'gsm_signal.dart';
 
 class Gsm {
-  BandGSM bandGSM;
-  SignalGSM signalGSM;
-  String connectionStatus;
-  Network network;
-  String type;
+  BandGSM? bandGSM;
+  SignalGSM? signalGSM;
+  String? connectionStatus;
+  Network? network;
+  String? type;
 
   Gsm(
       {this.bandGSM,
@@ -31,14 +31,14 @@ class Gsm {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.bandGSM != null) {
-      data['bandGSM'] = this.bandGSM.toJson();
+      data['bandGSM'] = this.bandGSM!.toJson();
     }
     if (this.signalGSM != null) {
-      data['signalGSM'] = this.signalGSM.toJson();
+      data['signalGSM'] = this.signalGSM!.toJson();
     }
     data['connectionStatus'] = this.connectionStatus;
     if (this.network != null) {
-      data['network'] = this.network.toJson();
+      data['network'] = this.network!.toJson();
     }
     data['type'] = this.type;
     return data;

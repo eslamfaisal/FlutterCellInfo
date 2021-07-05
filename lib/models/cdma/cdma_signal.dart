@@ -1,10 +1,10 @@
 class SignalCDMA {
-  int cdmaEcio;
-  int cdmaRssi;
-  int evdoEcio;
-  int evdoRssi;
-  int evdoSnr;
-  int dbm;
+  int? cdmaEcio;
+  int? cdmaRssi;
+  int? evdoEcio;
+  int? evdoRssi;
+  int? evdoSnr;
+  int? dbm;
 
   SignalCDMA(
       {this.cdmaEcio,

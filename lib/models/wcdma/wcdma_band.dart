@@ -1,8 +1,8 @@
 class BandWCDMA {
-  int downlinkUarfcn;
-  int channelNumber;
-  String name;
-  int number;
+  int? downlinkUarfcn;
+  int? channelNumber;
+  String? name;
+  int? number;
 
   BandWCDMA({this.downlinkUarfcn, this.channelNumber, this.name, this.number});
 

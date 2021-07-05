@@ -1,9 +1,9 @@
 class BandNR {
-  int downlinkArfcn;
-  int downlinkFrequency;
-  int channelNumber;
-  String name;
-  int number;
+  int? downlinkArfcn;
+  int? downlinkFrequency;
+  int? channelNumber;
+  String? name;
+  int? number;
 
   BandNR(
       {this.downlinkArfcn,

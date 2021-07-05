@@ -1,8 +1,8 @@
 class SignalGSM {
-  int bitErrorRate;
-  int rssi;
-  int timingAdvance;
-  int dbm;
+  int? bitErrorRate;
+  int? rssi;
+  int? timingAdvance;
+  int? dbm;
 
   SignalGSM({this.bitErrorRate, this.rssi, this.timingAdvance, this.dbm});
 

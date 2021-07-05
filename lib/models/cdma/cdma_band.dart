@@ -1,7 +1,7 @@
 class Band {
-  int channelNumber;
-  String name;
-  int number;
+  int? channelNumber;
+  String? name;
+  int? number;
 
   Band({this.channelNumber, this.name, this.number});
 

@@ -6,13 +6,13 @@ import 'package:cell_info/models/tds_cdma/tds_cdma_parameters.dart';
 import 'package:cell_info/models/wcdma/wcdma_parameters.dart';
 
 class CellType {
-  String type;
-  Wcdma wcdma;
-  Nr nr;
-  Lte lte;
-  Gsm gsm;
-  Tdscdma tdscdma;
-  Cdma cdma;
+  String? type;
+  Wcdma? wcdma;
+  Nr? nr;
+  Lte? lte;
+  Gsm? gsm;
+  Tdscdma? tdscdma;
+  Cdma? cdma;
 
   CellType(
       {this.type,
@@ -38,22 +38,22 @@ class CellType {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['type'] = this.type;
     if (this.wcdma != null) {
-      data['wcdma'] = this.wcdma.toJson();
+      data['wcdma'] = this.wcdma!.toJson();
     }
     if (this.nr != null) {
-      data['nr'] = this.nr.toJson();
+      data['nr'] = this.nr!.toJson();
     }
     if (this.lte != null) {
-      data['lte'] = this.lte.toJson();
+      data['lte'] = this.lte!.toJson();
     }
     if (this.gsm != null) {
-      data['gsm'] = this.gsm.toJson();
+      data['gsm'] = this.gsm!.toJson();
     }
     if (this.tdscdma != null) {
-      data['tdscdma'] = this.tdscdma.toJson();
+      data['tdscdma'] = this.tdscdma!.toJson();
     }
     if (this.cdma != null) {
-      data['cdma'] = this.cdma.toJson();
+      data['cdma'] = this.cdma!.toJson();
     }
     return data;
   }

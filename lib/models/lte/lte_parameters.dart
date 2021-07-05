@@ -4,19 +4,19 @@ import 'lte_band.dart';
 import 'lte_signal.dart';
 
 class Lte {
-  BandLTE bandLTE;
-  int bandwidth;
-  int cid;
-  int eci;
-  int enb;
-  int pci;
-  String ecgi;
-  SignalLTE signalLTE;
-  int tac;
-  String connectionStatus;
-  Network network;
-  int subscriptionId;
-  String type;
+  BandLTE? bandLTE;
+  int? bandwidth;
+  int? cid;
+  int? eci;
+  int? enb;
+  int? pci;
+  String? ecgi;
+  SignalLTE? signalLTE;
+  int? tac;
+  String? connectionStatus;
+  Network? network;
+  int? subscriptionId;
+  String? type;
 
   Lte(
       {this.bandLTE,
@@ -56,7 +56,7 @@ class Lte {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.bandLTE != null) {
-      data['bandLTE'] = this.bandLTE.toJson();
+      data['bandLTE'] = this.bandLTE!.toJson();
     }
     data['bandwidth'] = this.bandwidth;
     data['cid'] = this.cid;
@@ -65,12 +65,12 @@ class Lte {
     data['pci'] = this.pci;
     data['ecgi'] = this.ecgi;
     if (this.signalLTE != null) {
-      data['signalLTE'] = this.signalLTE.toJson();
+      data['signalLTE'] = this.signalLTE!.toJson();
     }
     data['tac'] = this.tac;
     data['connectionStatus'] = this.connectionStatus;
     if (this.network != null) {
-      data['network'] = this.network.toJson();
+      data['network'] = this.network!.toJson();
     }
     data['subscriptionId'] = this.subscriptionId;
     data['type'] = this.type;

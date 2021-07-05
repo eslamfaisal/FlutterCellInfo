@@ -1,7 +1,7 @@
 class Network {
-  String iso;
-  String mcc;
-  String mnc;
+  String? iso;
+  String? mcc;
+  String? mnc;
 
   Network({this.iso, this.mcc, this.mnc});
 

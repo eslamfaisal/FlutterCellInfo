@@ -4,14 +4,14 @@ import 'nr_band.dart';
 import 'nr_signal.dart';
 
 class Nr {
-  BandNR bandNR;
-  int nci;
-  int pci;
-  SignalNR signalNR;
-  int tac;
-  String connectionStatus;
-  Network network;
-  String type;
+  BandNR? bandNR;
+  int? nci;
+  int? pci;
+  SignalNR? signalNR;
+  int? tac;
+  String? connectionStatus;
+  Network? network;
+  String? type;
 
   Nr(
       {this.bandNR,
@@ -41,17 +41,17 @@ class Nr {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.bandNR != null) {
-      data['bandNR'] = this.bandNR.toJson();
+      data['bandNR'] = this.bandNR!.toJson();
     }
     data['nci'] = this.nci;
     data['pci'] = this.pci;
     if (this.signalNR != null) {
-      data['signalNR'] = this.signalNR.toJson();
+      data['signalNR'] = this.signalNR!.toJson();
     }
     data['tac'] = this.tac;
     data['connectionStatus'] = this.connectionStatus;
     if (this.network != null) {
-      data['network'] = this.network.toJson();
+      data['network'] = this.network!.toJson();
     }
     data['type'] = this.type;
     return data;

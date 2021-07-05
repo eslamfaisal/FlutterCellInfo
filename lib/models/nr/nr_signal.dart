@@ -1,13 +1,13 @@
 class SignalNR {
-  int csiRsrp;
-  int csiRsrpAsu;
-  int csiRsrq;
-  int csiSinr;
-  int ssRsrp;
-  int ssRsrpAsu;
-  int ssRsrq;
-  int ssSinr;
-  int dbm;
+  int? csiRsrp;
+  int? csiRsrpAsu;
+  int? csiRsrq;
+  int? csiSinr;
+  int? ssRsrp;
+  int? ssRsrpAsu;
+  int? ssRsrq;
+  int? ssSinr;
+  int? dbm;
 
   SignalNR(
       {this.csiRsrp,

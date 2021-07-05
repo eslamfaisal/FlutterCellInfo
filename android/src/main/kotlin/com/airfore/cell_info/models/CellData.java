@@ -1,7 +1,10 @@
 package com.airfore.cell_info.models;
 
+import androidx.annotation.Keep;
+
 import java.io.Serializable;
 
+@Keep
 public class CellData implements Serializable {
 
     private long timestamp;
@@ -16,9 +19,9 @@ public class CellData implements Serializable {
     private Integer bid;
     private Double lat;
     private Double lon;
-    private int channelNumber;
-    private int number;
-    private String name;
+    private int bandChannelNumber;
+    private int bandNumber;
+    private String bandName;
     private int cdmaRssi;
     private int evdoRssi;
     private int evdoSnr;
@@ -48,8 +51,8 @@ public class CellData implements Serializable {
     private int rssiAsu;
     private int rsrpAsu;
     private Long nci;
-    private int downlinkArfcn;
-    private int downlinkFrequency;
+    private int bandDownlinkArfcn;
+    private int bandDownlinkFrequency;
     private int csiRsrp;
     private int csiRsrq;
     private int csiSinr;
@@ -89,188 +92,12 @@ public class CellData implements Serializable {
     public CellData() {
     }
 
-    public String getOSVERSION() {
-        return OSVERSION;
-    }
-
-    public String getRELEASE() {
-        return RELEASE;
-    }
-
-    public void setRELEASE(String RELEASE) {
-        this.RELEASE = RELEASE;
-    }
-
-    public String getDEVICE() {
-        return DEVICE;
-    }
-
-    public void setDEVICE(String DEVICE) {
-        this.DEVICE = DEVICE;
-    }
-
-    public String getMODEL() {
-        return MODEL;
-    }
-
-    public void setMODEL(String MODEL) {
-        this.MODEL = MODEL;
-    }
-
-    public String getPRODUCT() {
-        return PRODUCT;
-    }
-
-    public void setPRODUCT(String PRODUCT) {
-        this.PRODUCT = PRODUCT;
-    }
-
-    public String getBRAND() {
-        return BRAND;
-    }
-
-    public void setBRAND(String BRAND) {
-        this.BRAND = BRAND;
-    }
-
-    public String getDISPLAY() {
-        return DISPLAY;
-    }
-
-    public void setDISPLAY(String DISPLAY) {
-        this.DISPLAY = DISPLAY;
-    }
-
-    public String getCPU_ABI() {
-        return CPU_ABI;
-    }
-
-    public void setCPU_ABI(String CPU_ABI) {
-        this.CPU_ABI = CPU_ABI;
-    }
-
-    public String getCPU_ABI2() {
-        return CPU_ABI2;
-    }
-
-    public void setCPU_ABI2(String CPU_ABI2) {
-        this.CPU_ABI2 = CPU_ABI2;
-    }
-
-    public String getUNKNOWN() {
-        return UNKNOWN;
-    }
-
-    public void setUNKNOWN(String UNKNOWN) {
-        this.UNKNOWN = UNKNOWN;
-    }
-
-    public String getHARDWARE() {
-        return HARDWARE;
-    }
-
-    public void setHARDWARE(String HARDWARE) {
-        this.HARDWARE = HARDWARE;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
-    }
-
-    public String getMANUFACTURER() {
-        return MANUFACTURER;
-    }
-
-    public void setMANUFACTURER(String MANUFACTURER) {
-        this.MANUFACTURER = MANUFACTURER;
-    }
-
-    public String getSERIAL() {
-        return SERIAL;
-    }
-
-    public void setSERIAL(String SERIAL) {
-        this.SERIAL = SERIAL;
-    }
-
-    public String getUSER() {
-        return USER;
-    }
-
-    public void setUSER(String USER) {
-        this.USER = USER;
-    }
-
-    public String getHOST() {
-        return HOST;
-    }
-
-    public void setHOST(String HOST) {
-        this.HOST = HOST;
-    }
-
-    public void setOSVERSION(String OSVERSION) {
-        this.OSVERSION = OSVERSION;
-    }
-
     public long getTimestamp() {
         return timestamp;
     }
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
-    }
-
-    public int getChannelNumber() {
-        return channelNumber;
-    }
-
-    public void setChannelNumber(int channelNumber) {
-        this.channelNumber = channelNumber;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getDownlinkArfcn() {
-        return downlinkArfcn;
-    }
-
-    public void setDownlinkArfcn(int downlinkArfcn) {
-        this.downlinkArfcn = downlinkArfcn;
-    }
-
-    public int getDownlinkFrequency() {
-        return downlinkFrequency;
-    }
-
-    public void setDownlinkFrequency(int downlinkFrequency) {
-        this.downlinkFrequency = downlinkFrequency;
-    }
-
-    public int getArfcn() {
-        return arfcn;
-    }
-
-    public void setArfcn(int arfcn) {
-        this.arfcn = arfcn;
     }
 
     public String getType() {
@@ -362,27 +189,27 @@ public class CellData implements Serializable {
     }
 
     public int getBandChannelNumber() {
-        return channelNumber;
+        return bandChannelNumber;
     }
 
-    public void setBandChannelNumber(int channelNumber) {
-        this.channelNumber = channelNumber;
+    public void setBandChannelNumber(int bandChannelNumber) {
+        this.bandChannelNumber = bandChannelNumber;
     }
 
     public int getBandNumber() {
-        return number;
+        return bandNumber;
     }
 
-    public void setBandNumber(int number) {
-        this.number = number;
+    public void setBandNumber(int bandNumber) {
+        this.bandNumber = bandNumber;
     }
 
     public String getBandName() {
-        return name;
+        return bandName;
     }
 
-    public void setBandName(String name) {
-        this.name = name;
+    public void setBandName(String bandName) {
+        this.bandName = bandName;
     }
 
     public int getCdmaRssi() {
@@ -618,19 +445,19 @@ public class CellData implements Serializable {
     }
 
     public int getBandDownlinkArfcn() {
-        return downlinkArfcn;
+        return bandDownlinkArfcn;
     }
 
-    public void setBandDownlinkArfcn(int downlinkArfcn) {
-        this.downlinkArfcn = downlinkArfcn;
+    public void setBandDownlinkArfcn(int bandDownlinkArfcn) {
+        this.bandDownlinkArfcn = bandDownlinkArfcn;
     }
 
     public int getBandDownlinkFrequency() {
-        return downlinkFrequency;
+        return bandDownlinkFrequency;
     }
 
-    public void setBandDownlinkFrequency(int downlinkFrequency) {
-        this.downlinkFrequency = downlinkFrequency;
+    public void setBandDownlinkFrequency(int bandDownlinkFrequency) {
+        this.bandDownlinkFrequency = bandDownlinkFrequency;
     }
 
     public int getCsiRsrp() {
@@ -767,5 +594,141 @@ public class CellData implements Serializable {
 
     public void setEcio(int ecio) {
         this.ecio = ecio;
+    }
+
+    public int getArfcn() {
+        return arfcn;
+    }
+
+    public void setArfcn(int arfcn) {
+        this.arfcn = arfcn;
+    }
+
+    public String getOSVERSION() {
+        return OSVERSION;
+    }
+
+    public void setOSVERSION(String OSVERSION) {
+        this.OSVERSION = OSVERSION;
+    }
+
+    public String getRELEASE() {
+        return RELEASE;
+    }
+
+    public void setRELEASE(String RELEASE) {
+        this.RELEASE = RELEASE;
+    }
+
+    public String getDEVICE() {
+        return DEVICE;
+    }
+
+    public void setDEVICE(String DEVICE) {
+        this.DEVICE = DEVICE;
+    }
+
+    public String getMODEL() {
+        return MODEL;
+    }
+
+    public void setMODEL(String MODEL) {
+        this.MODEL = MODEL;
+    }
+
+    public String getPRODUCT() {
+        return PRODUCT;
+    }
+
+    public void setPRODUCT(String PRODUCT) {
+        this.PRODUCT = PRODUCT;
+    }
+
+    public String getBRAND() {
+        return BRAND;
+    }
+
+    public void setBRAND(String BRAND) {
+        this.BRAND = BRAND;
+    }
+
+    public String getDISPLAY() {
+        return DISPLAY;
+    }
+
+    public void setDISPLAY(String DISPLAY) {
+        this.DISPLAY = DISPLAY;
+    }
+
+    public String getCPU_ABI() {
+        return CPU_ABI;
+    }
+
+    public void setCPU_ABI(String CPU_ABI) {
+        this.CPU_ABI = CPU_ABI;
+    }
+
+    public String getCPU_ABI2() {
+        return CPU_ABI2;
+    }
+
+    public void setCPU_ABI2(String CPU_ABI2) {
+        this.CPU_ABI2 = CPU_ABI2;
+    }
+
+    public String getUNKNOWN() {
+        return UNKNOWN;
+    }
+
+    public void setUNKNOWN(String UNKNOWN) {
+        this.UNKNOWN = UNKNOWN;
+    }
+
+    public String getHARDWARE() {
+        return HARDWARE;
+    }
+
+    public void setHARDWARE(String HARDWARE) {
+        this.HARDWARE = HARDWARE;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getMANUFACTURER() {
+        return MANUFACTURER;
+    }
+
+    public void setMANUFACTURER(String MANUFACTURER) {
+        this.MANUFACTURER = MANUFACTURER;
+    }
+
+    public String getSERIAL() {
+        return SERIAL;
+    }
+
+    public void setSERIAL(String SERIAL) {
+        this.SERIAL = SERIAL;
+    }
+
+    public String getUSER() {
+        return USER;
+    }
+
+    public void setUSER(String USER) {
+        this.USER = USER;
+    }
+
+    public String getHOST() {
+        return HOST;
+    }
+
+    public void setHOST(String HOST) {
+        this.HOST = HOST;
     }
 }

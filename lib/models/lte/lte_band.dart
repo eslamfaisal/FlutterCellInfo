@@ -1,8 +1,8 @@
 class BandLTE {
-  int downlinkEarfcn;
-  int channelNumber;
-  String name;
-  int number;
+  int? downlinkEarfcn;
+  int? channelNumber;
+  String? name;
+  int? number;
 
   BandLTE({this.downlinkEarfcn, this.channelNumber, this.name, this.number});
 

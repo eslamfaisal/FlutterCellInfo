@@ -4,12 +4,12 @@ import 'cdma_band.dart';
 import 'cdma_signal.dart';
 
 class Cdma {
-  Band band;
-  int bid;
-  SignalCDMA signalCDMA;
-  String connectionStatus;
-  Network network;
-  String type;
+  Band? band;
+  int? bid;
+  SignalCDMA? signalCDMA;
+  String? connectionStatus;
+  Network? network;
+  String? type;
 
   Cdma(
       {this.band,
@@ -34,15 +34,15 @@ class Cdma {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.band != null) {
-      data['band'] = this.band.toJson();
+      data['band'] = this.band!.toJson();
     }
     data['bid'] = this.bid;
     if (this.signalCDMA != null) {
-      data['signalCDMA'] = this.signalCDMA.toJson();
+      data['signalCDMA'] = this.signalCDMA!.toJson();
     }
     data['connectionStatus'] = this.connectionStatus;
     if (this.network != null) {
-      data['network'] = this.network.toJson();
+      data['network'] = this.network!.toJson();
     }
     data['type'] = this.type;
     return data;

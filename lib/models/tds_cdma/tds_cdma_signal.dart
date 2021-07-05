@@ -1,10 +1,10 @@
 class SignalTDSCDMA {
-  int bitErrorRate;
-  int rscp;
-  int rscpAsu;
-  int rssi;
-  int rssiAsu;
-  int dbm;
+  int? bitErrorRate;
+  int? rscp;
+  int? rscpAsu;
+  int? rssi;
+  int? rssiAsu;
+  int? dbm;
 
   SignalTDSCDMA(
       {this.bitErrorRate,

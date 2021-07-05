@@ -1,12 +1,12 @@
 class SignalWCDMA {
-  int bitErrorRate;
-  int ecio;
-  int ecno;
-  int rscp;
-  int rscpAsu;
-  int rssi;
-  int rssiAsu;
-  int dbm;
+  int? bitErrorRate;
+  int? ecio;
+  int? ecno;
+  int? rscp;
+  int? rscpAsu;
+  int? rssi;
+  int? rssiAsu;
+  int? dbm;
 
   SignalWCDMA(
       {this.bitErrorRate,
