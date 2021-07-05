@@ -15,14 +15,18 @@ class CellInfoPlugin: FlutterPlugin, MethodCallHandler {
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
-  private lateinit var channel : MethodChannel
+  private lateinit var cellInfoChannel : MethodChannel
+  private lateinit var simInfoChannel : MethodChannel
   private  var context : Context? = null
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     context =  flutterPluginBinding.applicationContext
 
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "cell_info")
-    channel.setMethodCallHandler(this)
+    cellInfoChannel = MethodChannel(flutterPluginBinding.binaryMessenger, "cell_info")
+    cellInfoChannel.setMethodCallHandler(this)
+
+    simInfoChannel = MethodChannel(flutterPluginBinding.binaryMessenger, "sim_info")
+    simInfoChannel.setMethodCallHandler(this)
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
@@ -42,6 +46,6 @@ class CellInfoPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-    channel.setMethodCallHandler(null)
+    cellInfoChannel.setMethodCallHandler(null)
   }
 }

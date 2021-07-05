@@ -8,6 +8,7 @@
    <application
         android:label="cell_info_example"
         android:icon="@mipmap/ic_launcher">
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

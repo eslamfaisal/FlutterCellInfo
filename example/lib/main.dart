@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:cell_info/CellResponse.dart';
+import 'package:cell_info/SIMInfoResponse.dart';
 import 'package:cell_info/cell_info.dart';
 import 'package:cell_info/models/common/cell_type.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,11 @@ class _MyAppState extends State<MyApp> {
 
         print('currentDBM = ' + currentDBM);
       }
+
+      String simInfo = await CellInfo.getSIMInfo;
+      final simJson = json.decode(simInfo);
+      print("desply name ${SIMInfoResponse.fromJson(simJson).simInfoList[0].displayName}");
+
     } on PlatformException {
       _cellsResponse = null;
     }
